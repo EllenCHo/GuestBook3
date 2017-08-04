@@ -18,7 +18,7 @@ public class GuestBookController {
 	@Autowired
 	GuestBookDao dao;
 	
-	@RequestMapping("/list")
+	@RequestMapping("/")
 	public String list(Model model) {				//정보를 전달하기 위해 Model 객체를 받는다
 		List<GuestBookVo> list = dao.getlist();
 		model.addAttribute("list", list);
@@ -28,7 +28,7 @@ public class GuestBookController {
 	@RequestMapping("/add")
 	public String add(@ModelAttribute GuestBookVo vo ) {
 		dao.insert(vo);
-		return "redirect:/list";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/deleteform")
@@ -40,6 +40,6 @@ public class GuestBookController {
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String delete(@RequestParam("no") int no, @RequestParam("password") String password) {
 		dao.delete(no, password);
-		return "redirect:/list";
+		return "redirect:/";
 	}
 }
