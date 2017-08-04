@@ -8,8 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.guestbook.vo.GuestBookVo;
 
+@Repository
 public class GuestBookDao {
 	public int delete(String no, String password) {
 		// 0. import java.sql.*;
@@ -84,7 +87,7 @@ public class GuestBookDao {
 
 			pstmt.setString(1, vo.getName());
 			pstmt.setString(2, vo.getPw());
-			pstmt.setString(3, vo.getContent());
+			pstmt.setString(3, vo.getContent().replace("\r\n", "<br/>"));
 			pstmt.setString(4, vo.getDate());
 
 			count = pstmt.executeUpdate();

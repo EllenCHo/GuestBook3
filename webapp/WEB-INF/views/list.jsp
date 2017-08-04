@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.javaex.dao.GuestBookDao" %>
-<%@ page import="com.javaex.vo.GuestBookVo" %>
-<%@ page import="java.util.List" %>
-<%
-	List<GuestBookVo> list = (List<GuestBookVo>)request.getAttribute("list");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,19 +23,19 @@
 	</form>
 	<br/>
 
-<%for(GuestBookVo vo : list) { %>
+<c:forEach items="${list }" var="vo">
 	<table width=510 border=1>
 		<tr>
-			<td>[<%=vo.getNo()%>]</td>
-			<td><%=vo.getName() %></td>
-			<td><%=vo.getDate() %></td>
-			<td><a href="/g2/gb?a=deleteform&no=<%=vo.getNo()%>">삭제</a></td>
+			<td>[${vo.no }]</td>
+			<td>${vo.name }</td>
+			<td>${vo.date }</td>
+			<td><a href="/g3/deleteform?no=${vo.no }">삭제</a></td>
 		</tr>
 		<tr>
-			<td colspan=4><%=vo.getContent().replace("\n", "<br/>") %></td>
+			<td colspan=4>${vo.content }</td>
 		</tr>
 	</table>
         <br/>
-<%} %>
+</c:forEach>
 </body>
 </html>
