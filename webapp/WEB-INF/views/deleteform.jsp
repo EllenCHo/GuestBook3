@@ -7,9 +7,8 @@
 <title>방명록</title>
 </head>
 <body>
-	<form method="post" action="/g2/gb">
+	<form method="post" action="/g3/delete">
 	<input type='hidden' name="no" value=${no }>
-	<input type="hidden" name="a" value ="delete">
 	<table>
 		<tr>
 			<td>비밀번호</td>

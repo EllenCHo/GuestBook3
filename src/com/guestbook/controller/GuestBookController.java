@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.guestbook.dao.GuestBookDao;
@@ -30,10 +31,15 @@ public class GuestBookController {
 		return "redirect:/list";
 	}
 	
-	@RequestMapping("deleteform")
+	@RequestMapping("/deleteform")
 	public String deleteform(@RequestParam("no") int no, Model model) {
-		model.addAttribute(no);
+		model.addAttribute("no", no);
 		return "deleteform";
 	}
-
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public String delete(@RequestParam("no") int no, @RequestParam("password") String password) {
+		dao.delete(no, password);
+		return "redirect:/list";
+	}
 }

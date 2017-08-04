@@ -14,7 +14,7 @@ import com.guestbook.vo.GuestBookVo;
 
 @Repository
 public class GuestBookDao {
-	public int delete(String no, String password) {
+	public int delete(int no, String password) {
 		// 0. import java.sql.*;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -31,10 +31,10 @@ public class GuestBookDao {
 
 			// 3. SQL문 준비 / 바인딩 / 실행
 			String query = "delete from guestbook "
-					+ "where no=to_number(?) and password=?";
+					+ "where no=? and password=?";
 			pstmt = conn.prepareStatement(query);
 
-			pstmt.setString(1, no);
+			pstmt.setInt(1, no);
 			pstmt.setString(2, password);
 
 			count = pstmt.executeUpdate();
