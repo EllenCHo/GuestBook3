@@ -25,7 +25,7 @@ public class GuestBookController {
 		return "list";
 	}
 	
-	@RequestMapping("/add")
+	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String add(@ModelAttribute GuestBookVo vo ) {
 		dao.insert(vo);
 		return "redirect:/";
