@@ -134,7 +134,7 @@ public class GuestBookDao {
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 
 			// 3. SQL문 준비 / 바인딩 / 실행
-			String query = "select no, name, password, content, reg_date " + "from guestbook" + " order by no desc";
+			String query = "select no, name, password, content, to_char(reg_date,'yyyy-mm-dd hh24:mi:ss') reg_date " + "from guestbook" + " order by no desc";
 			pstmt = conn.prepareStatement(query);
 
 			rs = pstmt.executeQuery();
@@ -146,7 +146,7 @@ public class GuestBookDao {
 				String password = rs.getString("password");
 				String content = rs.getString("content");
 				String regDate = rs.getString("reg_date");
-
+				
 				list.add(new GuestBookVo(no, name, password, content, regDate));
 			}
 
